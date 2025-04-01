@@ -46,4 +46,28 @@ public class CarService {
     public void deleteCar(String regNo) {
         carRepository.deleteCar(regNo);
     }
+
+    public List<Car> getAvaibaleCars() {
+        return carRepository.getAvailableCars();
+    }
+
+    public List<Car> getNotAvailabeCars() {
+        return carRepository.getNotAvailableCars();
+    }
+
+    public List<Car> getCarsByFuelType(String fuelType) {
+        return carRepository.getCarsByFuelType(fuelType);
+    }
+
+    public List<Car> getCarsByCapacity(int capacity) {
+        return carRepository.getCarsByCapacity(capacity);
+    }
+
+    public List<Car> getCarsByRate(double rate) {
+        return carRepository.getCarsByRate(rate);
+    }
+
+    public List<Car> getCarsByModel(String model) {
+        return carRepository.getCarsByModel(model);
+    }
 }

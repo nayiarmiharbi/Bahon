@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS payment (
 
 -- Insert data into users table
 INSERT INTO users (userType, username, password) VALUES
+(0, 'admin', 'admin'),
 (1, 'john_doe', 'password123'),
 (2, 'jane_smith', 'password456'),
 (1, 'alex_williams', 'password789'),
@@ -96,26 +97,27 @@ INSERT INTO users (userType, username, password) VALUES
 
 -- Insert data into userDetails table
 INSERT INTO userDetails (UID, fullName, address, contact, driver_license_number) VALUES
-(1, 'John Doe', '123 Elm Street, Springfield, IL', '555-1234', 'D123456789'),
-(2, 'Jane Smith', '456 Oak Avenue, Lincoln, NE', '555-5678', 'D987654321'),
-(3, 'Alex Williams', '789 Pine Road, Boston, MA', '555-1122', 'D123987654'),
-(4, 'Mary Jones', '321 Maple Boulevard, Austin, TX', '555-3344', 'D321456987'),
-(5, 'Michael Brown', '654 Cedar Lane, Denver, CO', '555-5566', 'D654321123');
+(1, 'Raiyan Ibrahim', '123 Elm Street, Springfield, IL', '555-1234', 'DL123-456'),
+(2, 'John Doe', '123 Elm Street, Springfield, IL', '555-1234', 'D123456789'),
+(3, 'Jane Smith', '456 Oak Avenue, Lincoln, NE', '555-5678', 'D987654321'),
+(4, 'Alex Williams', '789 Pine Road, Boston, MA', '555-1122', 'D123987654'),
+(5, 'Mary Jones', '321 Maple Boulevard, Austin, TX', '555-3344', 'D321456987'),
+(6, 'Michael Brown', '654 Cedar Lane, Denver, CO', '555-5566', 'D654321123');
 
 
 -- Insert data into cars table
 INSERT INTO cars (regNo, owner_id, model, capacity, rate, status, fuelType) VALUES
-('ABC123', 1, 'Toyota Camry', 5, 50.00, 'Available', 'Petrol'),
+('ABC123', 6, 'Toyota Camry', 5, 50.00, 'Available', 'Petrol'),
 ('DEF456', 2, 'Honda Accord', 5, 60.00, 'Booked', 'Diesel'),
 ('GHI789', 3, 'BMW 320i', 5, 120.00, 'Maintenance', 'Electric'),
 ('JKL012', 4, 'Mercedes-Benz A-Class', 4, 100.00, 'Available', 'Petrol'),
 ('MNO345', 5, 'Audi A4', 5, 80.00, 'Available', 'Diesel'),
-('PQR678', 1, 'Nissan Altima', 5, 55.00, 'Booked', 'Electric'),
+('PQR678', 6, 'Nissan Altima', 5, 55.00, 'Booked', 'Electric'),
 ('STU901', 2, 'Ford Focus', 5, 45.00, 'Available', 'Petrol'),
 ('VWX234', 3, 'Chevrolet Malibu', 5, 70.00, 'Available', 'Electric'),
 ('YZA567', 4, 'Tesla Model 3', 5, 150.00, 'Booked', 'Diesel'),
 ('BCD890', 5, 'Ford Mustang', 2, 95.00, 'Available', 'Petrol'),
-('EFG123', 1, 'Kia Optima', 5, 60.00, 'Maintenance', 'Diesel'),
+('EFG123', 6, 'Kia Optima', 5, 60.00, 'Maintenance', 'Diesel'),
 ('HIJ456', 2, 'Hyundai Sonata', 5, 65.00, 'Booked', 'Electric'),
 ('KLM789', 3, 'Subaru Impreza', 5, 55.00, 'Available', 'Petrol'),
 ('NOP012', 4, 'Chevrolet Camaro', 4, 110.00, 'Available', 'Electric'),
@@ -162,17 +164,17 @@ INSERT INTO insurance (regNo, provider_name, policy_number, coverage_amount, sta
 
 -- Insert data into rental table
 INSERT INTO rental (BID, customer_id, totalAmount, status) VALUES
-(1, 1, 200.00, 'Active'),
+(1, 6, 200.00, 'Active'),
 (2, 2, 250.00, 'Completed'),
 (3, 3, 300.00, 'Canceled'),
 (4, 4, 400.00, 'Active'),
 (5, 5, 150.00, 'Completed'),
-(6, 1, 180.00, 'Active'),
+(6, 6, 180.00, 'Active'),
 (7, 2, 220.00, 'Active'),
 (8, 3, 350.00, 'Canceled'),
 (9, 4, 320.00, 'Completed'),
 (10, 5, 280.00, 'Active'),
-(11, 1, 250.00, 'Completed'),
+(11, 6, 250.00, 'Completed'),
 (12, 2, 200.00, 'Active'),
 (13, 3, 280.00, 'Canceled'),
 (14, 4, 220.00, 'Completed'),

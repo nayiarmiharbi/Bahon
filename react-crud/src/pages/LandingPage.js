@@ -21,7 +21,7 @@ const LandingPage = () => {
         </p>
         <a
           className="App-link"
-          href="/login"
+          href="/cars"
         >
           See Cars
         </a>

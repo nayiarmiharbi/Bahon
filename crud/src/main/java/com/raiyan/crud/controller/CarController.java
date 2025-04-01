@@ -85,4 +85,61 @@ public class CarController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/available")
+    public ResponseEntity<List<Car>> getAvailableCars() {
+        List<Car> availableCars = carService.getAvaibaleCars();
+        if (availableCars.isEmpty()) {
+            logger.info("No available cars found.");
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(availableCars);
+    }
+
+    @GetMapping("/notavailable")
+    public ResponseEntity<List<Car>> getNotAvailableCars() {
+        List<Car> notAvailableCars = carService.getNotAvailabeCars();
+        if (notAvailableCars.isEmpty()) {
+            logger.info("No not available cars found.");
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(notAvailableCars);
+    }
+
+    @GetMapping("/fueltype/{fuelType}")
+    public ResponseEntity<List<Car>> getCarsByFuelType(@PathVariable String fuelType) {
+        List<Car> cars = carService.getCarsByFuelType(fuelType);
+        if (cars.isEmpty()) {
+            logger.info("No cars found with fuel type " + fuelType);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(cars);
+    }
+    @GetMapping("/capacity/{capacity}")
+    public ResponseEntity<List<Car>> getCarsByCapacity(@PathVariable int capacity) {
+        List<Car> cars = carService.getCarsByCapacity(capacity);
+        if (cars.isEmpty()) {
+            logger.info("No cars found with capacity " + capacity);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(cars);
+    }
+    @GetMapping("/rate/{rate}")
+    public ResponseEntity<List<Car>> getCarsByRate(@PathVariable double rate) {
+        List<Car> cars = carService.getCarsByRate(rate);
+        if (cars.isEmpty()) {
+            logger.info("No cars found with rate " + rate);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(cars);
+    }
+    @GetMapping("/model/{model}")
+    public ResponseEntity<List<Car>> getCarsByModel(@PathVariable String model) {
+        List<Car> cars = carService.getCarsByModel(model);
+        if (cars.isEmpty()) {
+            logger.info("No cars found with model " + model);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(cars);
+    }
 }

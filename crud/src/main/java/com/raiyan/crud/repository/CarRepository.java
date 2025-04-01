@@ -64,4 +64,40 @@ public class CarRepository {
         List<Car> cars = jdbcTemplate.query(sql, rowMapper, regNo);
         return cars.stream().findFirst();
     }
+
+    // Get Cars Available for Booking
+    public List<Car> getAvailableCars() {
+        String sql = "SELECT * FROM cars WHERE status = 'Available'";
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    // Get not Available Cars
+    public List<Car> getNotAvailableCars() {
+        String sql = "SELECT * FROM cars WHERE status != 'Available'";
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    // Get Cars by Fuel Type
+    public List<Car> getCarsByFuelType(String fuelType) {
+        String sql = "SELECT * FROM cars WHERE fuelType = ? AND status = 'Available'";
+        return jdbcTemplate.query(sql, rowMapper, fuelType);
+    }
+
+    // Get Cars by Capacity
+    public List<Car> getCarsByCapacity(int capacity) {
+        String sql = "SELECT * FROM cars WHERE capacity = ? AND status = 'Available'";
+        return jdbcTemplate.query(sql, rowMapper, capacity);
+    }
+
+    // Get Cars by Rate range
+    public List<Car> getCarsByRate(double rate) {
+        String sql = "SELECT * FROM cars WHERE rate <= ? AND status = 'Available'";
+        return jdbcTemplate.query(sql, rowMapper, rate);
+    }
+
+    // Get cars by model alike 
+    public List<Car> getCarsByModel(String model) {
+        String sql = "SELECT * FROM cars WHERE model LIKE ? AND status = 'Available'";
+        return jdbcTemplate.query(sql, rowMapper, "%" + model + "%");
+    }
 }

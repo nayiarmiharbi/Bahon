@@ -1,28 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAtom } from "jotai";
 import { userAtom } from "../atoms/userAtom";
+import { getUserById } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [user] = useAtom(userAtom);
+  const navigate = useNavigate();
 
-  if (!user) {
-    return <h2>Please log in to access the dashboard</h2>;
-  }
+  useEffect(() => {
+    fetchCars();
+  }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    window.location.reload();
+
+  const fetchCars = async () => {
+    const response = await getUserById(user.uid);
+    const userDetails = response.data;
+    if (userDetails.userType === 1) {
+      navigate("/customer");
+    } else if (userDetails.userType === 2) {
+      navigate("/owner");
+    } else {
+      navigate("/admin");
+    }
   };
 
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Name: {user.fullName}</p>
-      <p>Address: {user.address}</p>
-      <p>Contact: {user.contact}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
-  );
+
 };
 
 export default Dashboard;

@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { useAtom } from 'jotai'
 import { useNavigate } from 'react-router-dom'
-import { userAtom } from '../../atoms/userAtom'
-import { getCarsByOwner, deleteCar } from '../../services/api';
+import { deleteCar, getCarsByFuel, getCarsByStatus } from '../../services/api';
 
-const CarList = () => {
-    const [user] = useAtom(userAtom);
+const CarListAvailable = () => {
+    const [fuelType, setFuelType] = useState("");
     const [cars, setCars] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchCars();
-    }, []);
+    }, [fuelType]);
 
     const fetchCars = async () => {
-        const response = await getCarsByOwner(user.uid);
-        setCars(response.data);
+        if(fuelType === "") {
+            const response = await getCarsByStatus("available");
+            setCars(response.data);
+        } else {
+            const response = await getCarsByFuel(fuelType);
+            setCars(response.data);
+        }
     };
 
     const handleDelete = async (regNo) => {
@@ -23,9 +26,13 @@ const CarList = () => {
         fetchCars();
     };
 
+    const handleChange = async (e) => {
+        setFuelType(e.target.value);
+    }
+
     return (
         <div>
-            <h2>{user?.fullName}'s Cars List</h2>
+            <h2>Available Cars List</h2>
             <table border="1">
                 <thead>
                     <tr>
@@ -35,7 +42,14 @@ const CarList = () => {
                         <th>Capacity</th>
                         <th>Rate</th>
                         <th>Status</th>
-                        <th>Fuel</th>
+                        <th>
+                            <select name="fuelType" value={fuelType} onChange={handleChange} required>
+                                <option value="">All</option>
+                                <option value="Electric">Electric</option>
+                                <option value="Petrol">Petrol</option>
+                                <option value="Diesel">Diesel</option>
+                            </select>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,4 +75,4 @@ const CarList = () => {
     );
 }
 
-export default CarList;
+export default CarListAvailable;

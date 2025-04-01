@@ -25,12 +25,14 @@ const Login = () => {
 
       // Check if user is admin or user
       try {
-        const userDetailsResponse = await getUserById(response.data.uid);
-        const userDetails = userDetailsResponse.data;
+        const userResponse = await getUserById(response.data.uid);
+        const userDetails = userResponse.data;
         if (userDetails.userType === 1) {
-          navigate("/cars/ownerlist"); // Redirect to admin page
+          navigate("/customer"); 
+        } else if( userDetails.userType === 2) {
+          navigate("/owner"); 
         } else {
-          navigate("/dashboard"); // Redirect to user page
+          navigate("/admin"); 
         }
       }
       catch (error) {

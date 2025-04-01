@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useAtom } from 'jotai'
 import { useNavigate } from 'react-router-dom'
-import { userAtom } from '../../atoms/userAtom'
-import { getCarsByOwner, deleteCar } from '../../services/api';
+import { deleteCar, getCarsByStatus } from '../../services/api';
 
-const CarList = () => {
-    const [user] = useAtom(userAtom);
+const CarNotAvailable = () => {
     const [cars, setCars] = useState([]);
     const navigate = useNavigate();
 
@@ -14,7 +11,7 @@ const CarList = () => {
     }, []);
 
     const fetchCars = async () => {
-        const response = await getCarsByOwner(user.uid);
+        const response = await getCarsByStatus("notavailable");
         setCars(response.data);
     };
 
@@ -25,7 +22,7 @@ const CarList = () => {
 
     return (
         <div>
-            <h2>{user?.fullName}'s Cars List</h2>
+            <h2>Not Available Cars List</h2>
             <table border="1">
                 <thead>
                     <tr>
@@ -61,4 +58,4 @@ const CarList = () => {
     );
 }
 
-export default CarList;
+export default CarNotAvailable;
