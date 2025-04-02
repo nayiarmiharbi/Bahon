@@ -1,6 +1,5 @@
 import React from 'react'
 import CarNotAvailable from '../components/Cars/CarNotAvailable'
-import { Check } from '@mui/icons-material'
 
 const AdminDashboard = () => {
   return (
@@ -10,6 +9,7 @@ const AdminDashboard = () => {
         <button>See All Users</button>
         <button>Check insurance Application</button>
         <button>Check New Car Application</button>
+        <button>Verify Payments</button>
     </div>
   )
 }
